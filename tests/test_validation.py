@@ -31,33 +31,32 @@ class TestCases(unittest.TestCase):
     
 
 
-    # def test_sans_detection(self):
-    #         # ETANT DONNE un lecteur n'ayant pas détecté de badge
-    #         lecteur = TestLecteurBadge()
-    #         lecteur.simuler_detection_badge()
+    def test_sans_detection(self):
+        # ETANT DONNE un lecteur n'ayant pas détecté de badge
+        lecteur = TestLecteurBadge()
     
-    #         # ET une porte
-    #         porte = TestSystemePorte()
+        # ET une porte
+        porte = TestSystemePorte()
     
-    #         # QUAND le contrôleur interroge ce lecteur
-    #         SystemeValidation(porte, lecteur).interroger_lecteur()
+        # QUAND le contrôleur interroge ce lecteur
+        SystemeValidation(porte, lecteur).interroger_lecteur()
     
-    #         # ALORS la porte ne reçoit pas de signal d'ouverture
-    #         self.assertFalse(porte.demander_ouverture)
+        # ALORS la porte ne reçoit pas de signal d'ouverture
+        self.assertFalse(porte.signal)
  
-    # def test_sans_interrogation(self):
-    #         # ETANT DONNE un lecteur ayant détecté un badge valide
-    #         lecteur = TestLecteurBadge()
-    #         lecteur.simuler_detection_badge()
+    def test_sans_interrogation(self):
+        # ETANT DONNE un lecteur ayant détecté un badge valide
+        lecteur = TestLecteurBadge()
+        lecteur.simuler_detection_badge()
     
-    #         # ET une porte
-    #         porte = TestSystemePorte()
+        # ET une porte
+        porte = TestSystemePorte()
     
-    #         # ET un contrôleur
-    #         SystemeValidation(porte, lecteur)
+        # ET un contrôleur
+        SystemeValidation(porte, lecteur)
     
-    #         # ALORS la porte ne reçoit pas de signal d'ouverture
-    #         self.assertFalse(porte.signal_ouverture_reçu)
+        # ALORS la porte ne reçoit pas de signal d'ouverture
+        self.assertFalse(porte.signal)
 
     # # Test 
     # def test_signal_validation_envoyé_au_systeme_porte(self):
