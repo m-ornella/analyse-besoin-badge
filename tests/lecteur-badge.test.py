@@ -7,7 +7,7 @@ from .systeme-porte import SystemePorte
 # 1.Présentation du badge au lecteur
 # 2.Lecteur interroge le badge
 # 3.Lecteur lance un signal d'accès ou de refus
-class TestLecteurBadge:
+class TestLecteurBadge(unittest.TestCase):
     
     def test_cas_nominal(self):
     # ETANT DONNE un badge valide présenté au lecteur
@@ -34,3 +34,6 @@ class TestLecteurBadge:
     # ALORS le lecteur lance un signal de refus d'accès
         self.AssertEqual(False,systeme_validation.lancer_signal())
        
+
+if __name__ == '__main__':
+    unittest.main()
