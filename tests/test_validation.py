@@ -20,13 +20,13 @@ class TestCases(unittest.TestCase):
         lecteur_badge.simuler_detection_badge()
 
     # ET une porte
-        systeme_porte = TestSystemePorte()
+        porte = TestSystemePorte()
 
     # QUAND le lecteur est interrogé
-        SystemeValidation(systeme_porte, lecteur_badge).interroger_lecteur()
+        SystemeValidation(porte, lecteur_badge).interroger_lecteur()
 
     # ALORS la porte reçoit un signal d'ouverture
-        self.assertTrue(systeme_porte.signal_ouverture_recu)
+        self.assertTrue(porte.signal)
 
     
 
@@ -34,6 +34,7 @@ class TestCases(unittest.TestCase):
     # def test_sans_detection(self):
     #         # ETANT DONNE un lecteur n'ayant pas détecté de badge
     #         lecteur = TestLecteurBadge()
+    #         lecteur.simuler_detection_badge()
     
     #         # ET une porte
     #         porte = TestSystemePorte()
@@ -42,7 +43,7 @@ class TestCases(unittest.TestCase):
     #         SystemeValidation(porte, lecteur).interroger_lecteur()
     
     #         # ALORS la porte ne reçoit pas de signal d'ouverture
-    #         self.assertFalse(porte.signal_ouverture_reçu)
+    #         self.assertFalse(porte.demander_ouverture)
  
     # def test_sans_interrogation(self):
     #         # ETANT DONNE un lecteur ayant détecté un badge valide
