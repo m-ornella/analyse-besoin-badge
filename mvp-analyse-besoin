@@ -1,0 +1,39 @@
+//////// MVP
+ETANT DONNE
+un badge valide présenté au lecteur
+QUAND
+le lecteur est interrogé
+ALORS
+un signal d'ouverture est lancé
+
+ETANT DONNE
+un badge non valide présenté au lecteur
+QUAND
+le lecteur est interrogé
+ALORS
+le lecteur lance un signal de refus d'accès
+
+
+
+
+////// après MVP
+ETANT DONNE
+un administrateur souhaite créer un badge
+QUAND
+il remplit le form avec le nom de l'utilisateur
+ALORS
+le badge est ajouté à la liste des badges dispos
+
+ETANT DONNE
+un administrateur souhaite supprimer un badge
+QUAND
+il sélectionne l'utilisateur en question
+ALORS
+le badge n'est plus dans la liste des badges valides
+
+ETANT DONNE
+un administrateur souhaite modifier(restreindre ou étendre l'accès) un badge
+QUAND
+il sélectionne l'utilisateur en question
+ALORS
+le badge est mis à jour
