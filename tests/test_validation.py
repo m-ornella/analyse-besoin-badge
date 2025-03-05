@@ -1,7 +1,7 @@
 import unittest
 from tests.classes_test.test_lecteur import TestLecteurBadge
-from badge import Badge
-from systeme_validation import SystemeValidation
+from src.badge import Badge
+from src.systeme_validation import SystemeValidation
 from tests.classes_test.test_systeme_porte import TestSystemePorte
 import sys
 import os
@@ -26,7 +26,7 @@ class TestCases(unittest.TestCase):
         SystemeValidation(systeme_porte, lecteur_badge).interroger_lecteur()
 
     # ALORS la porte reçoit un signal d'ouverture
-        self.assertTrue(systeme_porte.signal_ouverture_reçu)
+        self.assertTrue(systeme_porte.signal_ouverture_recu)
 
     
 

@@ -1,4 +1,4 @@
-from lecteur_interface import LecteurBadge
+from src.lecteur_interface import LecteurBadge
 
 class TestLecteurBadge(LecteurBadge):
     def __init__(self):

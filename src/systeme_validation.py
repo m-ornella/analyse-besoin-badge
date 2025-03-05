@@ -1,5 +1,5 @@
-from lecteur_interface import LecteurBadge
-from porte_interface import Porte
+from src.lecteur_interface import LecteurBadge
+from src.porte_interface import Porte
 
 class SystemeValidation():
     def __init__(self, porte: Porte, lecteur: LecteurBadge):
