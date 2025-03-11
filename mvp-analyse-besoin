@@ -18,22 +18,61 @@ le lecteur lance un signal de refus d'accès
 
 ////// après MVP
 ETANT DONNE
-un administrateur souhaite créer un badge
+une porte ayant un lecteur d'entrée et de sortie
 QUAND
-il remplit le form avec le nom de l'utilisateur
+le systeme de validation interroge le lecteur
+ET qu'un badge valide est présenté
 ALORS
-le badge est ajouté à la liste des badges dispos
+le lecteur interrogé déclenche l'ouverture de la porte
 
 ETANT DONNE
-un administrateur souhaite supprimer un badge
+un lecteur associé à plusieurs portes
 QUAND
-il sélectionne l'utilisateur en question
+un badge valide est présenté au lecteur
 ALORS
-le badge n'est plus dans la liste des badges valides
+toutes les portes associées s'ouvrent
 
 ETANT DONNE
-un administrateur souhaite modifier(restreindre ou étendre l'accès) un badge
+un lecteur associé à plusieurs portes
 QUAND
-il sélectionne l'utilisateur en question
+un badge non valide est présenté au lecteur
 ALORS
-le badge est mis à jour
+toutes les portes associées restent verrouillées
+
+ETANT DONNE
+plusieurs lecteurs associés à une seule porte
+QUAND
+un badge valide est présenté à un des deux lecteurs
+ALORS
+la porte associée s'ouvre
+
+ETANT DONNE
+plusieurs lecteurs associés à une seule porte
+QUAND
+un badge non valide est présenté à un des deux lecteurs
+ALORS
+la porte associée reste verrouillée
+
+ETANT DONNE
+Une porte associée à un ou plusieurs lecteurs
+ET que la porte a été ouverte suite à une validation de badge
+QUAND
+Un délai prédéfini s'écoule sans nouvelle action
+ALORS
+La porte se reverrouille automatiquement
+
+ETANT DONNE
+une porte déjà ouverte
+ET un badge valide presenté une nouvelle fois au lecteur
+QUAND
+le lecteur est interrogé
+ALORS
+la porte reste ouverte
+
+ETANT DONNE
+une porte déjà ouverte
+ET un badge non valide presenté au lecteur
+QUAND
+le lecteur est interrogé
+ALORS
+la porte reste ouverte (l'ouverture n'est pas perturbé par la badge non valide)

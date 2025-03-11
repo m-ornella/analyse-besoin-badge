@@ -6,8 +6,6 @@ from tests.classes_test.test_systeme_porte import TestSystemePorte
 import sys
 import os
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
-
 # 1.Présentation du badge au lecteur
 # 2.Lecteur interroge le badge
 # 3.Lecteur lance un signal d'accès ou de refus
@@ -29,8 +27,6 @@ class TestCases(unittest.TestCase):
         self.assertTrue(porte.signal)
 
     
-
-
     def test_sans_detection(self):
         # ETANT DONNE un lecteur n'ayant pas détecté de badge
         lecteur = TestLecteurBadge()
