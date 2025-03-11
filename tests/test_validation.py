@@ -21,7 +21,7 @@ class TestCases(unittest.TestCase):
         porte = TestSystemePorte()
 
     # QUAND le lecteur est interrogé
-        SystemeValidation(porte, lecteur_badge).interroger_lecteur()
+        SystemeValidation([porte], lecteur_badge).interroger_lecteur()
 
     # ALORS la porte reçoit un signal d'ouverture
         self.assertTrue(porte.signal)
@@ -54,33 +54,17 @@ class TestCases(unittest.TestCase):
         # ALORS la porte ne reçoit pas de signal d'ouverture
         self.assertFalse(porte.signal)
 
-    # # Test 
-    # def test_signal_validation_envoyé_au_systeme_porte(self):
-    # # ETANT DONNE un systeme qui envoit un signal d'accès
-    #     systeme_validation = SystemeValidation()
+    def test_multiples_portes(self):
+        # ETANT DONNE un lecteur associé à plusieurs portes
+        lecteur = TestLecteurBadge()
+        porte1 = TestSystemePorte()
+        porte2 = TestSystemePorte()  
 
-    # # QUAND le lecteur est interrogé
-    #     systeme_validation.lancer_signal()
-    #     systeme_porte = SystemeValidation()
+        # QUAND un badge valide est présenté au lecteur
+        lecteur.simuler_detection_badge()
+        SystemeValidation([porte1, porte2], lecteur).interroger_lecteur()
 
-    # # ALORS le système de validation lance un signal d'autorisation d'accès
-    #     self.AssertEqual(True,systeme_porte.recevoir_signal())
+        # ALORS toutes les portes associées s'ouvrent
+        self.assertTrue(porte1.signal)
+        self.assertTrue(porte2.signal)
 
-
-    # # Test 
-    # def test_signal_refus_envoyé_au_systeme_porte(self):
-    # # ETANT DONNE un systeme qui envoit un signal d'accès
-    #     systeme_validation = SystemeValidation()
-
-    # # QUAND le lecteur est interrogé
-    #     systeme_validation.lancer_signal()
-    #     systeme_porte = TestSystemePorte()
-
-    # # ALORS le système de validation lance un signal d'autorisation d'accès
-    #     self.AssertEqual(False,systeme_porte.recevoir_signal())
-
-    
-       
-
-if __name__ == '__main__':
-    unittest.main()
