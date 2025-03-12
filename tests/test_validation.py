@@ -54,7 +54,7 @@ class TestCases(unittest.TestCase):
         # ALORS la porte ne reçoit pas de signal d'ouverture
         self.assertFalse(porte.signal)
 
-    def test_multiples_portes(self):
+    def test_multiples_portes_badge_valide(self):
         # ETANT DONNE un lecteur associé à plusieurs portes
         lecteur = TestLecteurBadge()
         porte1 = TestSystemePorte()
@@ -67,4 +67,21 @@ class TestCases(unittest.TestCase):
         # ALORS toutes les portes associées s'ouvrent
         self.assertTrue(porte1.signal)
         self.assertTrue(porte2.signal)
+
+    def test_multiples_portes_badge_invalide(self):
+        # ETANT DONNE un lecteur associé à plusieurs portes
+        lecteur = TestLecteurBadge()
+        porte1 = TestSystemePorte()
+        porte2 = TestSystemePorte()  
+
+        # QUAND un badge non valide est présenté au lecteur
+        lecteur.simuler_detection_badge_invalide()
+        SystemeValidation([porte1, porte2], lecteur).interroger_lecteur()
+
+        # ALORS toutes les portes associées s'ouvrent
+        self.assertFalse(porte1.signal)
+        self.assertFalse(porte2.signal)
+
+
+    
 

@@ -6,5 +6,6 @@ class TestSystemePorte(Porte):
         self.signal = False
     
     def demander_ouverture(self):
-        self.signal = True
+        if not self.signal:
+            self.signal = True
         return self.signal

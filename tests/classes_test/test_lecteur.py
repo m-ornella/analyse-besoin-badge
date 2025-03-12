@@ -11,3 +11,8 @@ class TestLecteurBadge(LecteurBadge):
     
     def simuler_detection_badge(self):
             self.__numero_badge_detecte = 0
+    
+    def simuler_detection_badge_invalide(self):
+        self.badge_detecte = True
+    def simuler_detection_badge_invalide(self):
+        self.badge_detecte = False
