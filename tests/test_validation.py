@@ -104,5 +104,16 @@ class TestCases(unittest.TestCase):
         lecteur2.simuler_detection_badge_invalide()
         SystemeValidation([porte1], [lecteur1, lecteur2]).interroger_lecteur()
 
-    
+    def test_multiples_lecteurs_un_badge_invalide_et_un_valide(self):
+        # ETANT DONNE plusieurs lecteurs associés à plusieurs portes
+        lecteur1 = TestLecteurBadge()
+        lecteur2 = TestLecteurBadge()
+        porte1 = TestSystemePorte() 
+
+        # QUAND un badge valide est présenté au lecteur
+        lecteur1.simuler_detection_badge()
+        lecteur2.simuler_detection_badge_invalide()
+        SystemeValidation([porte1], [lecteur1, lecteur2]).interroger_lecteur()
+
+      
 
