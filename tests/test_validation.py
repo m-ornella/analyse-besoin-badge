@@ -152,7 +152,7 @@ class TestCases(unittest.TestCase):
         # ALORS la porte reste fermée
         self.assertFalse(porte1.signal)
 
-    def test_deux_lecteurs_deux_badges_valides_requis_deux_presentes(self):
+    def test_deux_lecteurs_deux_badges_valides_requis_deux_presentes_un_valide(self):
         # ETANT DONNE plusieurs lecteurs associés à une porte qui requiert 2 badges valides
         lecteur1 = TestLecteurBadge()
         lecteur2 = TestLecteurBadge()
@@ -180,6 +180,15 @@ class TestCases(unittest.TestCase):
         # ALORS la porte s'ouvre
         self.assertTrue(porte1.signal)
 
+    def test_une_porte_aucun_lecteur(self):
+        # ETANT DONNE une porte
+        porte = TestSystemePorte(nbre_badges_requis=1) 
+
+        # QUAND aucun lecteur est associé
+        SystemeValidation([porte], []).interroger_lecteur()
+
+        # ALORS la porte reste fermée
+        self.assertFalse(porte.signal)
 
     if __name__ == '__main__':
         unittest.main()
