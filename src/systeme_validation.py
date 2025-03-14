@@ -8,10 +8,12 @@ class SystemeValidation():
         
 
     def interroger_lecteur(self):
-        for lecteur in self.__lecteurs:
-            if lecteur.verifier_badge() is not None:
-                for porte in self.__portes:
-                    porte.demander_ouverture()
+    # Count the number of valid badges detected by all readers
+        nbr_badges_valides = sum(1 for lecteur in self.__lecteurs if lecteur.verifier_badge() is not None)
 
-
+        # Iterate over each door
+        for porte in self.__portes:
+            # Open the door if the required number of valid badges is met
+            if nbr_badges_valides >= porte.nbre_badges_requis:  # Use the requirement for each door
+                porte.demander_ouverture()  # Open the door
   

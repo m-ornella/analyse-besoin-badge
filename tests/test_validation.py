@@ -18,7 +18,7 @@ class TestCases(unittest.TestCase):
         lecteur_badge.simuler_detection_badge()
 
     # ET une porte
-        porte = TestSystemePorte()
+        porte = TestSystemePorte(nbre_badges_requis=1)
 
     # QUAND le lecteur est interrogé
         SystemeValidation([porte], [lecteur_badge]).interroger_lecteur()
@@ -32,10 +32,10 @@ class TestCases(unittest.TestCase):
         lecteur = TestLecteurBadge()
     
         # ET une porte
-        porte = TestSystemePorte()
+        porte = TestSystemePorte(nbre_badges_requis=1)
     
         # QUAND le contrôleur interroge ce lecteur
-        SystemeValidation(porte, [lecteur]).interroger_lecteur()
+        SystemeValidation([porte], [lecteur]).interroger_lecteur()
     
         # ALORS la porte ne reçoit pas de signal d'ouverture
         self.assertFalse(porte.signal)
@@ -46,7 +46,7 @@ class TestCases(unittest.TestCase):
         lecteur.simuler_detection_badge()
     
         # ET une porte
-        porte = TestSystemePorte()
+        porte = TestSystemePorte(nbre_badges_requis=1)
     
         # ET un contrôleur
         SystemeValidation(porte, lecteur)
@@ -57,8 +57,8 @@ class TestCases(unittest.TestCase):
     def test_multiples_portes_badge_valide(self):
         # ETANT DONNE un lecteur associé à plusieurs portes
         lecteur = TestLecteurBadge()
-        porte1 = TestSystemePorte()
-        porte2 = TestSystemePorte()  
+        porte1 = TestSystemePorte(nbre_badges_requis=1)
+        porte2 = TestSystemePorte(nbre_badges_requis=1)  
 
         # QUAND un badge valide est présenté au lecteur
         lecteur.simuler_detection_badge()
@@ -71,8 +71,8 @@ class TestCases(unittest.TestCase):
     def test_multiples_portes_badge_invalide(self):
         # ETANT DONNE un lecteur associé à un porte
         lecteur = TestLecteurBadge()
-        porte1 = TestSystemePorte()
-        porte2 = TestSystemePorte()  
+        porte1 = TestSystemePorte(nbre_badges_requis=1)
+        porte2 = TestSystemePorte(nbre_badges_requis=1)  
 
         # QUAND un badge non valide est présenté au lecteur
         lecteur.simuler_detection_badge_invalide()
@@ -86,7 +86,7 @@ class TestCases(unittest.TestCase):
         # ETANT DONNE plusieurs lecteurs associés à une porte
         lecteur1 = TestLecteurBadge()
         lecteur2 = TestLecteurBadge()
-        porte1 = TestSystemePorte() 
+        porte1 = TestSystemePorte(nbre_badges_requis=1) 
 
         # QUAND un badge valide est présenté au lecteur
         lecteur1.simuler_detection_badge()
@@ -100,7 +100,7 @@ class TestCases(unittest.TestCase):
         # ETANT DONNE plusieurs lecteurs associés à une porte
         lecteur1 = TestLecteurBadge()
         lecteur2 = TestLecteurBadge()
-        porte1 = TestSystemePorte() 
+        porte1 = TestSystemePorte(nbre_badges_requis=1) 
 
         # QUAND un badge non valide est présenté au lecteur
         lecteur1.simuler_detection_badge_invalide()
@@ -114,7 +114,7 @@ class TestCases(unittest.TestCase):
         # ETANT DONNE plusieurs lecteurs associés à une porte
         lecteur1 = TestLecteurBadge()
         lecteur2 = TestLecteurBadge()
-        porte1 = TestSystemePorte() 
+        porte1 = TestSystemePorte(nbre_badges_requis=1) 
 
         # QUAND un badge valide est présenté au lecteur
         lecteur1.simuler_detection_badge()
@@ -128,7 +128,7 @@ class TestCases(unittest.TestCase):
     def test_un_lecteur_un_badge_invalide_et_un_valide(self):
         # ETANT DONNE un lecteur associé à une porte
         lecteur = TestLecteurBadge()
-        porte = TestSystemePorte() 
+        porte = TestSystemePorte(nbre_badges_requis=1) 
 
         # QUAND un badge valide et un badge invalide sont présentés au lecteur
         lecteur.simuler_detection_badge()
@@ -139,8 +139,23 @@ class TestCases(unittest.TestCase):
         self.assertTrue(porte.signal)
 
 
+    def test_deux_lecteurs_deux_badges_valides_necessaires(self):
+        # ETANT DONNE plusieurs lecteurs associés à une porte qui requiert 2 badges valides
+        lecteur1 = TestLecteurBadge()
+        lecteur2 = TestLecteurBadge()
+        porte1 = TestSystemePorte(nbre_badges_requis=2) 
+
+        # QUAND un seul badge valide est présenté à un seul lecteur
+        lecteur1.simuler_detection_badge()
+        SystemeValidation([porte1], [lecteur1, lecteur2]).interroger_lecteur()
+
+        # ALORS la porte reste fermée
+        self.assertFalse(porte1.signal)
+
+
     if __name__ == '__main__':
         unittest.main()
+
 
 
       
