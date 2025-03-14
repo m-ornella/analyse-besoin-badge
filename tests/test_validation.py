@@ -124,5 +124,24 @@ class TestCases(unittest.TestCase):
         # ALORS toutes la porte associée s'ouvre
         self.assertTrue(porte1.signal)
 
+
+    def test_un_lecteur_un_badge_invalide_et_un_valide(self):
+        # ETANT DONNE un lecteur associé à une porte
+        lecteur = TestLecteurBadge()
+        porte = TestSystemePorte() 
+
+        # QUAND un badge valide et un badge invalide sont présentés au lecteur
+        lecteur.simuler_detection_badge()
+        lecteur.simuler_detection_badge_invalide()
+        SystemeValidation([porte], [lecteur]).interroger_lecteur()
+
+        # ALORS la porte s'ouvre, même si un badge invalide est aussi présenté
+        self.assertTrue(porte.signal)
+
+
+    if __name__ == '__main__':
+        unittest.main()
+
+
       
 
