@@ -190,6 +190,19 @@ class TestCases(unittest.TestCase):
         # ALORS la porte reste fermée
         self.assertFalse(porte.signal)
 
+    def test_deux_detection_de_badge_valides(self):
+        # ETANT DONNE un lecteur associé à une porte
+        lecteur = TestLecteurBadge()
+        porte = TestSystemePorte(nbre_badges_requis=1) 
+
+        # QUAND deux badges valides sont présentés au même lecteur
+        lecteur.simuler_detection_badge()
+        lecteur.simuler_detection_badge()
+
+        # ALORS la porte s'ouvre
+        SystemeValidation([porte], [lecteur]).interroger_lecteur()
+        self.assertTrue(porte.signal)
+
     if __name__ == '__main__':
         unittest.main()
 
