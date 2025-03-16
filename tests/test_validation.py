@@ -1,10 +1,7 @@
 import unittest
 from tests.classes_test.test_lecteur import TestLecteurBadge
-from src.badge import Badge
 from src.systeme_validation import SystemeValidation
 from tests.classes_test.test_systeme_porte import TestSystemePorte
-import sys
-import os
 
 # 1.Présentation du badge au lecteur
 # 2.Lecteur interroge le badge
