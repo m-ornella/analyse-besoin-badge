@@ -6,6 +6,7 @@ class TestLecteurBadge(LecteurBadge):
     
     def verifier_badge(self) -> int | None:
         if self.badge_detecte is True:
+            self.badge_detecte = None
             return 0
         return None
     

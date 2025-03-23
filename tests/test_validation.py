@@ -46,7 +46,7 @@ class TestCases(unittest.TestCase):
         porte = TestSystemePorte(nbre_badges_requis=1)
     
         # ET un contrôleur
-        SystemeValidation(porte, lecteur)
+        SystemeValidation([porte], [lecteur])
     
         # ALORS la porte ne reçoit pas de signal d'ouverture
         self.assertFalse(porte.signal)
